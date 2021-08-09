@@ -1,13 +1,5 @@
-// vamos a optimizar el codigo viejo , del juego anterior, paso a paso 
-// PATRON MODULO, encapsulacion:
-// hacemos ejemplos de funciones anonimas
-// modelo 1 (mas resumido): ()=>{}
-// 'funcion autoinvocada', para llamarla inmediatamente se le agregan dos parentesis, así:
-// Las funciones anonimas crean un escope 
-// por ultimo encapsulamos todo el codigo del juego en una f anonima autoinvocada con use strict
 const miModulo=(()=>{
     'use strict' // ayuda a ejecutar de forma mas limia el codigo js // Elimina errores silenciosos de JavaScript haciendo que lancen excepciones
-                // crea un scope de un solo blocke 
 
     let     mazo  =[];
     const   palos =['C','D','H','S'], 
@@ -24,7 +16,7 @@ const miModulo=(()=>{
                                                                         // querySelectorAll mediante arreglo [0,1 etc] se referencia mediante la posicion del elemento a trabajar
     
 
-    //fincion para iniciar el juego
+    //funcion para iniciar el juego
     const   inicializarJuego=(numeroJugadores=2)=>{
             mazo = crearMazo();
 
@@ -115,9 +107,10 @@ const miModulo=(()=>{
             }
         },100 );  
     }
-    /////// TURNO DE LA COMPUTADORA:
+
+    /////// TURNO DE LA COMPUTADORA:  /////////////
     const turnoComputadora = (puntosMinimos)=>{
-        let puntosComputador=0; // cargo la variable acá para poder usar el resto de la loguca existente
+        let puntosComputador=0; // cargo la variable acá para poder usar el resto de la logica existente
         do{
             const carta= pedirCarta();  // el valor que salga en la carta
             puntosComputador = acumularPuntos(carta, puntosJugadores.length - 1 ); // optimizamos el turno de cada jugador, con un formato standard | Usamos la ultima posicion del arreglo para referirnos a la computadora
@@ -130,7 +123,7 @@ const miModulo=(()=>{
     }
 
     //////** * EVENTOS : **////////  en base al jugador !!
-    //* Cuando creamos elementos en los eventos debemos indicar hasta las clases *//
+    //* Cuando creamos elementos en los eventos debemos indicar tambien los estilos *//
 
     //* Apunte , callback : es una funcion que se pasa como argumento
     btnPedir.addEventListener('click', ()=>{
@@ -141,7 +134,7 @@ const miModulo=(()=>{
         crearCarta(carta, 0 );
 
         if(puntosJugador > 21){
-            swal('Perdiste!');
+            /* swal('Perdiste!'); */
             btnPedir.disabled = true;
             btnDetener.disabled = true;
             turnoComputadora(puntosJugador); // envio como argumento los puntos del jugador, no es obligatorio pero es buena practica
@@ -181,12 +174,3 @@ const miModulo=(()=>{
     };
 
 })();
-
-/* //funcion normal para entender (funciona igual):
-(function(){
-
-})();
- */
- 
-
-/***** CONTINUAR CON EL VIDEO 06 DE OPTIMIZACIONES 2DA PARTE || MIN 4:40 , 'creacion de imagen de carta' *****/
