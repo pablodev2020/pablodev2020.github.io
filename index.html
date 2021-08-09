@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black-Jack</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <header class="titulo">BlackJack de Pablo</header>
+    <div class="row mt-2">
+        <div class="col text-center">
+
+            <button id="btnNuevo" class="btn-danger">Nuevo juego</button>
+            <button id="btnPedir"   disabled="disabled" class="btn-primary">Pedir cartas</button>
+            <button id="btnDetener" disabled="disabled" class="btn-primary">Detener</button>
+        
+        </div>
+
+    </div>
+    <div class="row container">
+        <div class="col">
+            <h1>Jugador N°1|-Puntos:<small> 0</small></h1>
+            <div id="jugador-cartas" class="divCartas">
+              <!-- <img class="carta" src="assets/cartas/2C.png"> -->
+              <!-- <img class="carta" src="assets/cartas/2C.png">
+              <img class="carta" src="assets/cartas/2C.png"> -->
+            </div>
+        </div>
+    </div>
+    <div class="row container mt-2">
+        <div class="col">
+            <h1>Computadora|-Puntos:<small> 0</small></h1>
+            <div id="computadora-cartas" class="divCartas" >
+              <!-- <img class="carta" src="assets/cartas/8C.png">
+              <img class="carta" src="assets/cartas/8C.png">
+              <img class="carta" src="assets/cartas/8C.png"> -->
+            </div>
+        </div>
+    </div>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.8.0/sweetalert2.min.css" rel="stylesheet" />
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.8.0/sweetalert2.min.js"></script>
+
+    <script src="assets/js/underscore-min.js"></script>
+    <script src="assets/js/juego-min.js"></script>
+    <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+    
+    <script>
+        // inicializarJuego();
+        // console.log( miModulo );
+
+        document.querySelector('#btnNuevo').addEventListener('click', () => {
+            miModulo.nuevoJuego();
+        });
+        
+
+    </script>
+</body> 
+</html>
