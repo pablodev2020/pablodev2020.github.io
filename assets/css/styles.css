@@ -1,0 +1,54 @@
+html, body {
+    margin: 0px;
+    background-image: url(https://gq8ne3sd6ka12wvdz3ubnadf-wpengine.netdna-ssl.com/wp-content/uploads/2021/04/Casinos-Mexico.jpg.webp);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100%;
+    width:  100%;
+    color:whitesmoke;   
+    
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif; 
+      
+}
+
+.titulo{
+    width: 100%;
+    text-align: center;
+    background-color: black;    /* color de fondo*/
+    color: chartreuse;      /* color texto*/
+    padding: 1px;
+    font-size: 25px;
+}
+.carta{
+    position:relative;
+    height: 178px;
+    width: 125px;
+    left: 100px;
+    margin-left: -75px;
+}
+#computadora-cartas, #jugador-cartas{
+    height: 180px; 
+}
+#txtpuntos{
+    text-shadow: 4px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+}
+#cancion{
+    position: relative;
+    /* background-color: #000; */
+    margin-top: 0px;
+    height: 60px;
+    padding-top: 2px;
+}
+#rep{
+    box-shadow: 0 0 20px rgb(2, 8, 0);
+    border-radius: 10px;
+    height: 30px;
+}
+#btnReglas{
+    color:black;   
+}
+#text-center{
+    width: 100%;
+}
