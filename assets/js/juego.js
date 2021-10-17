@@ -1,5 +1,14 @@
+// optimizo el codigo viejo , del juego anterior, paso a paso 
+// PATRON MODULO, encapsulacion:
+// ejemplos de funciones anonimas
+// modelo 1 (mas resumido): ()=>{}
+// 'funcion autoinvocada', para llamarla inmediatamente se le agregan dos parentesis, así:
+// Las funciones anonimas crean un escope 
+// por ultimo encapsulo todo el codigo del juego en una f anonima autoinvocada con use strict
+
 const miModulo=(()=>{
-    'use strict' // ayuda a ejecutar de forma mas limia el codigo js // Elimina errores silenciosos de JavaScript haciendo que lancen excepciones
+    'use strict' // ayuda a ejecutar de forma mas limpia el codigo js // Elimina errores silenciosos de JavaScript haciendo que lancen excepciones
+                // crea un scope de un solo blocke 
 
     let     mazo  =[];
     const   palos =['C','D','H','S'], 
@@ -9,14 +18,15 @@ const miModulo=(()=>{
     // Referencias del html , indico a js el elemento en el dom
     const   btnPedir          = document.querySelector('#btnPedir'),
             btnDetener        = document.querySelector('#btnDetener'), 
-            btnNuevoJuego     = document.querySelector('#btnNuevo');
+            btnNuevoJuego     = document.querySelector('#btnNuevo'),
+            btnReglas         = document.querySelector('#btnReglas');
     //referencias a los div html:
     const   divCartasJugadores  = document.querySelectorAll('.divCartas'),
             puntosHtml          = document.querySelectorAll('small');   // selecciono el elemento html en el cual quiero aplicar
                                                                         // querySelectorAll mediante arreglo [0,1 etc] se referencia mediante la posicion del elemento a trabajar
     
 
-    //funcion para iniciar el juego
+    //fincion para iniciar el juego
     const   inicializarJuego=(numeroJugadores=2)=>{
             mazo = crearMazo();
 
@@ -96,21 +106,45 @@ const miModulo=(()=>{
         const [ puntosMinimos, puntosComputador ] = puntosJugadores; // desestructuracion de arreglos
         setTimeout(()=>{                            //  es una funcion , que hace ejecutar este callback(funcion pasada como argumento) un poquito despues la condicion para que muestre las cartas y luego el alert
             if(puntosComputador === puntosMinimos){
-                swal('Nadie gana :(' );
+                Swal.fire('Nadie gana :(' );
+                // swal('Nadie gana :(' );
             }else if(puntosMinimos > 21){
-                swal('Ganó la computadora');
+                // alert('Ganó la computadora');
+                // swal('Ganó la computadora');
             }else if(puntosComputador > 21 ){
-                swal('Ganasteee !!!');
+                // Swal.fire('Ganasteee !!!');
+                
+                Swal.fire({
+                    title: 'Felicitaciones GANASTE !!',
+                    width: 600,
+                    padding: '1em',
+                    background: '#fff url(/images/trees.png)',
+                    backdrop: `
+                      rgba(0,0,123,0.4)
+                      url("./assets/images/victoria.gif")
+                      left top
+                      no-repeat
+                    `
+                  }) 
+                    const sonido=()=>{
+                        let sonidito = new Audio();
+                        sonidito.src="assets/music/aplausos.mp3";
+                        sonidito.play();  
+                    }
+                  sonido();
+                
+
+                // swal('Ganasteee !!!');
 
             }else if(puntosComputador > puntosMinimos ){
-                swal('Ganó la computadora...');
+                Swal.fire('Ganó la computadora...');
+                // swal('Ganó la computadora...');
             }
         },100 );  
     }
-
-    /////// TURNO DE LA COMPUTADORA:  /////////////
+    /////// TURNO DE LA COMPUTADORA:
     const turnoComputadora = (puntosMinimos)=>{
-        let puntosComputador=0; // cargo la variable acá para poder usar el resto de la logica existente
+        let puntosComputador=0; // cargo la variable acá para poder usar el resto de la loguca existente
         do{
             const carta= pedirCarta();  // el valor que salga en la carta
             puntosComputador = acumularPuntos(carta, puntosJugadores.length - 1 ); // optimizamos el turno de cada jugador, con un formato standard | Usamos la ultima posicion del arreglo para referirnos a la computadora
@@ -123,37 +157,43 @@ const miModulo=(()=>{
     }
 
     //////** * EVENTOS : **////////  en base al jugador !!
-    //* Cuando creamos elementos en los eventos debemos indicar tambien los estilos *//
+    //* Cuando creamos elementos en los eventos debemos indicar hasta las clases *//
 
     //* Apunte , callback : es una funcion que se pasa como argumento
     btnPedir.addEventListener('click', ()=>{
         
-        const carta= pedirCarta();
+        const carta = pedirCarta();
         const puntosJugador = acumularPuntos(carta, 0);
         
         crearCarta(carta, 0 );
-
+        setTimeout(()=>{ 
         if(puntosJugador > 21){
-            /* swal('Perdiste!'); */
+            
+            // swal('Perdiste!');
             btnPedir.disabled = true;
             btnDetener.disabled = true;
             turnoComputadora(puntosJugador); // envio como argumento los puntos del jugador, no es obligatorio pero es buena practica
+            // Swal.fire('Perdiste, Volvé a intentarlo!')
+            Swal.fire('Perdiste, volvé a intentarlo!')
         }else if(puntosJugador === 21){
-            swal('21, Muy bien !!');
+            
+            
             btnPedir.disabled = true;
             btnDetener.disabled = true;
             turnoComputadora(puntosJugador);
+            // alert('21, Muy bien !!');
+            
         }/* else if(puntosComputador != 21 && 0 ){
             alert('ganaste!');
         } */
-
+    },100);
 
     });
 
     //botón detener:
     btnDetener.addEventListener('click', ()=>{
         btnDetener.disabled = true;
-        btnPedir.disabled   =true;
+        btnPedir.disabled   = true;
         
         // turnoComputadora(puntosJugador);
         turnoComputadora(puntosJugadores[0]);
@@ -167,6 +207,19 @@ const miModulo=(()=>{
 
     });
 
+    // reglas
+    btnReglas.addEventListener('click',()=>{
+        Swal.fire({
+            title: 'El objetivo es simple: ganarle al Croupier(computadora) obteniendo el puntaje más cercano a 21. Las figuras (el Valet, la Reina y el Rey) valen 10, el As vale 11 o 1 y todas las otras cartas conservan su valor. El Black Jack se produce cuando las dos (2) primeras cartas son un diez o cualquier figura más un As, para comenzar presioná NUEVO JUEGO, luego pedi las cartas que consideres, por ultimo detenelo para saber quien gana, en caso que llegues a 21, el juego se detiene automaticamente',
+            width: 700,
+            padding: '1em',
+            background: '#fff url(/images/trees.png)',
+            backdrop: `
+              rgba(0,0,123,0.4)
+              no-repeat
+            `
+          })
+    });
 
 
     return {
@@ -174,3 +227,10 @@ const miModulo=(()=>{
     };
 
 })();
+
+/* //funcion normal para entender (funciona igual):
+(function(){
+
+})();
+ */
+ 
