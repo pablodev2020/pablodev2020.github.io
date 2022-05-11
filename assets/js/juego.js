@@ -128,7 +128,7 @@ const miModulo=(()=>{
                   }) 
                     const sonido=()=>{
                         let sonidito = new Audio();
-                        sonidito.src="http://chatero.epizy.com/aplausos.mp3";
+                        sonidito.src="assets/music/aplausos.mp3";
                         sonidito.play();  
                     }
                   sonido();
