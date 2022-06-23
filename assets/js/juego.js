@@ -1,14 +1,6 @@
-// optimizo el codigo viejo , del juego anterior, paso a paso 
-// PATRON MODULO, encapsulacion:
-// ejemplos de funciones anonimas
-// modelo 1 (mas resumido): ()=>{}
-// 'funcion autoinvocada', para llamarla inmediatamente se le agregan dos parentesis, así:
-// Las funciones anonimas crean un escope 
-// por ultimo encapsulo todo el codigo del juego en una f anonima autoinvocada con use strict
-
 const miModulo=(()=>{
     'use strict' // ayuda a ejecutar de forma mas limpia el codigo js // Elimina errores silenciosos de JavaScript haciendo que lancen excepciones
-                // crea un scope de un solo blocke 
+                // crea un scope 
 
     let     mazo  =[];
     const   palos =['C','D','H','S'], 
@@ -228,9 +220,4 @@ const miModulo=(()=>{
 
 })();
 
-/* //funcion normal para entender (funciona igual):
-(function(){
-
-})();
- */
  
