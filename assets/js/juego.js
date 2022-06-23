@@ -128,7 +128,7 @@ const miModulo=(()=>{
                   }) 
                     const sonido=()=>{
                         let sonidito = new Audio();
-                        sonidito.src="/music/aplausos.wav";
+                        sonidito.src="./assets/music/aplausos.ogg";
                         sonidito.play();  
                     }
                   sonido();
